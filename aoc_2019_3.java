@@ -63,7 +63,7 @@ class Scratch {
             int steps = Integer.parseInt(s.substring(1));
             switch (direction) {
                 case 'R':
-                    for (int i = 1; i < steps; i++) {
+                    for (int i = 1; i <= steps; i++) {
                         pathNodes.add(new Node(x + i, y));
                     }
                     x += steps;
