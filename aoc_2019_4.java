@@ -1,12 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.IntStream;
 
 class Scratch {
     static final int INPUT_LOW = 128392;
     static final int INPUT_HIGH = 643281;
 
     public static void main(String[] args) {
-        List<Integer> matchingPasswords = new ArrayList<>();
 
         assert !matchesCriteria(111111);
         assert !matchesCriteria(643281);
@@ -17,13 +15,7 @@ class Scratch {
         assert matchesCriteria(111122);
         assert matchesCriteria(222233);
 
-        for (int temp = INPUT_LOW; temp <= INPUT_HIGH; temp++) {
-            if (matchesCriteria(temp)) {
-                matchingPasswords.add(temp);
-            }
-        }
-
-        System.out.println(matchingPasswords.size());
+        System.out.println(IntStream.range(INPUT_LOW, INPUT_HIGH).filter(Scratch::matchesCriteria).count());
     }
 
     private static boolean matchesCriteria(int value) {
