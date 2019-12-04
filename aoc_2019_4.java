@@ -20,7 +20,7 @@ class Scratch {
         assert matchesCriteria(122333);
         assert !matchesCriteria(110002);
 
-        System.out.println(IntStream.range(INPUT_LOW, INPUT_HIGH).filter(Scratch::matchesCriteria).count());
+        System.out.println(IntStream.rangeClosed(INPUT_LOW, INPUT_HIGH).filter(Scratch::matchesCriteria).count());
     }
 
     private static boolean matchesCriteria(int value) {
