@@ -1,9 +1,12 @@
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Vector;
 import java.util.stream.Collectors;
 
 class Scratch {
@@ -12,10 +15,14 @@ class Scratch {
     final static List<Node> path2Nodes = new ArrayList<>();
 
     /**
-     * Representing moves, starting from initial node: R - going right - add to x L - going left - subtract from x U -
-     * going up - add to y D - going down - subtract from y
+     * Representing moves, starting from initial node:
+     * R - going right - add to x
+     * L - going left - subtract from x
+     * U - going up - add to y
+     * D - going down - subtract from y
      */
     public static void main(String[] args) {
+        LocalDateTime start = LocalDateTime.now();
         String path1 = "R8,U5,L5,D3";
         String path2 = "U7,R6,D4,L4";
 
@@ -36,6 +43,7 @@ class Scratch {
         int finalOutput = processInput(path7, path8);
 
         System.out.println("Final output is " + finalOutput);
+        System.out.println(Duration.between(start, LocalDateTime.now()).getNano());
     }
 
     static int processInput(String path1, String path2) {
@@ -45,8 +53,10 @@ class Scratch {
         path1Nodes.addAll(pathParser(path1, entryNode));
         path2Nodes.addAll(pathParser(path2, entryNode));
 
-        Set<Node> intersectSet = new HashSet<>(path1Nodes);
-        intersectSet.retainAll(path2Nodes);
+        Set<Node> path1Set = new HashSet<>(path1Nodes);
+        Set<Node> path2Set = new HashSet<>(path2Nodes);
+        Set<Node> intersectSet = new HashSet<>(path1Set);
+        intersectSet.retainAll(path2Set);
 
         List<Integer> distances = intersectSet.stream()
                 .map(Scratch::calculateManhattanDistance)
@@ -139,4 +149,6 @@ class Scratch {
             return Objects.hash(x, y);
         }
     }
+
+
 }
