@@ -12,12 +12,12 @@ class Scratch {
         assert matchesCriteria(111122);
         assert matchesCriteria(222233);
         assert matchesCriteria(122233);
+        assert matchesCriteria(122333);
         assert !matchesCriteria(111111);
         assert !matchesCriteria(643281);
         assert !matchesCriteria(223450);
         assert !matchesCriteria(123789);
         assert !matchesCriteria(123444);
-        assert matchesCriteria(122333);
         assert !matchesCriteria(110002);
 
         System.out.println(IntStream.rangeClosed(INPUT_LOW, INPUT_HIGH).filter(Scratch::matchesCriteria).count());
